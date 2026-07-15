@@ -1,31 +1,43 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>ورود به سیستم</title>
-</head>
-<body>
+{% extends "accounts/base.html" %}
 
-    <h2>ورود به حساب کاربری</h2>
+{% block title %}
+ورود
+{% endblock %}
 
-    <form method="POST" action="">
+{% block content %}
 
-        {% csrf_token %}
+<h2>ورود به حساب کاربری</h2>
 
-        <div>
-            <label>نام کاربری:</label>
-            <input type="text" name="username" required>
-        </div>
-        <br>
+<form method="POST">
 
-        <div>
-            <label>رمز عبور:</label>
-            <input type="password" name="password" required>
-        </div>
-        <br>
+    {% csrf_token %}
 
-        <button type="submit">ورود</button>
-    </form>
+    {{ form.non_field_errors }}
 
-</body>
-</html>
+    <div>
+        <label>نام کاربری:</label><br>
+        {{ form.username }}
+    </div>
+
+    <br>
+
+    <div>
+        <label>رمز عبور:</label><br>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+
+    <br>
+
+    <button type="submit">
+        ورود
+    </button>
+
+</form>
+
+<p>
+    حساب کاربری ندارید؟
+    <a href="{% url 'register' %}">ثبت‌نام</a>
+</p>
+
+{% endblock %}

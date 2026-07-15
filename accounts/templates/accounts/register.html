@@ -1,53 +1,58 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>ثبت‌نام</title>
-</head>
-<body>
+{% extends "accounts/base.html" %}
 
-    <h2>ثبت‌نام در سامانه جزوه‌ها</h2>
+{% block title %}
+ثبت‌نام
+{% endblock %}
 
-    <form method="POST">
-        {% csrf_token %}
+{% block content %}
 
-        <div>
-            <label>نام کاربری:</label><br>
-            {{ form.username }}
-        </div>
+<h2>ثبت‌نام در سامانه</h2>
 
-        <br>
+<form method="POST">
 
-        <div>
-            <label>شماره دانشجویی:</label><br>
-            {{ form.student_id }}
-        </div>
+    {% csrf_token %}
 
-        <br>
+    {{ form.non_field_errors }}
 
-        <div>
-            <label>رمز عبور:</label><br>
-            {{ form.password1 }}
-        </div>
+    <div>
+        <label>نام کاربری:</label><br>
+        {{ form.username }}
+    </div>
 
+    <br>
+
+    <div>
+        <label>شماره دانشجویی:</label><br>
+        {{ form.student_id }}
+    </div>
+
+    <br>
+
+    <div>
+        <label>رمز عبور:</label><br>
+        {{ form.password1 }}
         {{ form.password1.errors }}
+    </div>
 
-        <br>
+    <br>
 
-        <div>
-            <label>تکرار رمز عبور:</label><br>
-            {{ form.password2 }}
-        </div>
-
+    <div>
+        <label>تکرار رمز عبور:</label><br>
+        {{ form.password2 }}
         {{ form.password2.errors }}
+    </div>
 
-        <br>
+    <br>
 
-        <button type="submit">
-            ثبت‌نام
-        </button>
+    <button type="submit">
+        ثبت‌نام
+    </button>
 
-    </form>
+</form>
 
-</body>
-</html>
+<p>
+    قبلاً ثبت‌نام کرده‌اید؟
+    <a href="{% url 'login' %}">ورود</a>
+</p>
+
+{% endblock %}

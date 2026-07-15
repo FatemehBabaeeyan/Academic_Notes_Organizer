@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm , LoginForm
 
 
 def register(request):
 
+    if request.user.is_authenticated:
+        return redirect("home")
+    
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
@@ -18,4 +23,26 @@ def register(request):
 
 
 def login_view(request):
-    return render(request, "accounts/login.html")
+    
+    if request.user.is_authenticated:
+       return redirect("home")
+
+    if request.method == "POST":
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("home")
+
+    else:
+        form = LoginForm()
+
+    return render(request, "accounts/login.html", {"form": form})
+def logout_view(request):
+    logout(request)
+    return redirect("login")
+
+@login_required
+def home(request):
+    return render (request , "accounts/home.html")
