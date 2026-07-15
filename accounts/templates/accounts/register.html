@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register</title>
+    <title>ثبت‌نام</title>
 </head>
 <body>
-    <h1>register page</h1>
+
+    <h2>ثبت‌نام در سامانه جزوه‌ها</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label>نام کاربری:</label><br>
+            {{ form.username }}
+        </div>
+
+        <br>
+
+        <div>
+            <label>شماره دانشجویی:</label><br>
+            {{ form.student_id }}
+        </div>
+
+        <br>
+
+        <div>
+            <label>رمز عبور:</label><br>
+            {{ form.password1 }}
+        </div>
+
+        {{ form.password1.errors }}
+
+        <br>
+
+        <div>
+            <label>تکرار رمز عبور:</label><br>
+            {{ form.password2 }}
+        </div>
+
+        {{ form.password2.errors }}
+
+        <br>
+
+        <button type="submit">
+            ثبت‌نام
+        </button>
+
+    </form>
+
 </body>
 </html>
