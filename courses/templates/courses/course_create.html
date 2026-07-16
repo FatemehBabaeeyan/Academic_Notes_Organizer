@@ -1,0 +1,23 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h2>افزودن درس</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        ثبت درس
+    </button>
+
+</form>
+
+<a href="{% url 'course_list' %}">
+    بازگشت
+</a>
+
+{% endblock %}
