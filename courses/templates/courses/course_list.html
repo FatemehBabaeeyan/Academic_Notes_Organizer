@@ -1,18 +1,36 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>درس‌های من</title>
-</head>
-<body>
+{% extends "accounts/base.html" %}
+
+{% block content %}
 
 <h1>درس‌های من</h1>
+
+<a href="{% url 'course_create' %}">
+    ➕ افزودن درس
+</a>
+
+<hr>
 
 {% for course in courses %}
 
 <p>
-    {{ course.name }} - {{ course.professor }}
+
+<strong>{{ course.name }}</strong>
+
+<br>
+
+استاد: {{ course.professor }}
+
+<br><br>
+
+<a href="{% url 'course_update' course.pk %}">
+✏️ ویرایش
+</a>
+
 </p>
+<a href="{% url 'course_delete' course.pk %}">
+🗑 حذف
+</a>
+<hr>
 
 {% empty %}
 
@@ -20,5 +38,4 @@
 
 {% endfor %}
 
-</body>
-</html>
+{% endblock %}

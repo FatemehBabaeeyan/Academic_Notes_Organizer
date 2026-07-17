@@ -1,0 +1,27 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h2>حذف درس</h2>
+
+<p>
+آیا از حذف درس
+<strong>{{ course.name }}</strong>
+مطمئن هستید؟
+</p>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        حذف
+    </button>
+
+</form>
+
+<a href="{% url 'course_list' %}">
+بازگشت
+</a>
+
+{% endblock %}
