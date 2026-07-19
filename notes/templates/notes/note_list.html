@@ -1,0 +1,37 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h2>جزوه‌های درس {{ course.name }}</h2>
+
+<a href="{% url 'note_create' course.id %}">
+    ➕ افزودن جزوه
+</a>
+
+<hr>
+
+{% for note in notes %}
+
+<p>
+
+<strong>{{ note.title }}</strong>
+
+<br>
+
+{{ note.description }}
+
+</p>
+
+<hr>
+
+{% empty %}
+
+<p>هنوز جزوه‌ای ثبت نشده است.</p>
+
+{% endfor %}
+
+<a href="{% url 'course_list' %}">
+بازگشت
+</a>
+
+{% endblock %}

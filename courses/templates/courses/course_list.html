@@ -20,16 +20,29 @@
 
 استاد: {{ course.professor }}
 
-<br><br>
+<br>
+
+<br>
+<a href="{% url 'note_list' course.id %}">
+    📚 مشاهده جزوه‌ها
+</a>
+<br>
 
 <a href="{% url 'course_update' course.pk %}">
 ✏️ ویرایش
 </a>
 
-</p>
+<br>
+<a href="{% url 'note_create' course.id %}">
+    📄 افزودن جزوه
+</a>
+
+<br>
 <a href="{% url 'course_delete' course.pk %}">
 🗑 حذف
 </a>
+
+</p>
 <hr>
 
 {% empty %}
