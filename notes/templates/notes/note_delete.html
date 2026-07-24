@@ -1,0 +1,27 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h2>حذف جزوه</h2>
+
+<p>
+آیا از حذف
+<strong>{{ note.title }}</strong>
+مطمئن هستید؟
+</p>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        حذف
+    </button>
+
+</form>
+
+<a href="{% url 'note_list' note.course.id %}">
+بازگشت
+</a>
+
+{% endblock %}

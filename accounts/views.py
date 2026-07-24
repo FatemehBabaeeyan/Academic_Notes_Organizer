@@ -46,3 +46,10 @@ def logout_view(request):
 @login_required
 def home(request):
     return render (request , "accounts/home.html")
+
+def landing(request):
+
+    if request.user.is_authenticated:
+        return redirect("course_list")
+
+    return render(request, "accounts/landing.html")

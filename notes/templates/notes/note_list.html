@@ -4,8 +4,25 @@
 
 <h2>جزوه‌های درس {{ course.name }}</h2>
 
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="جستجوی جزوه..."
+        value="{{ request.GET.search }}"
+    >
+
+    <button type="submit">
+        جستجو
+    </button>
+
+</form>
+
+<hr>
+
 <a href="{% url 'note_create' course.id %}">
-    ➕ افزودن جزوه
+➕ افزودن جزوه
 </a>
 
 <hr>
@@ -20,6 +37,31 @@
 
 {{ note.description }}
 
+<br>{% if note.file %}
+
+<p>
+
+فایل:
+
+<a href="{{ note.file.url }}" target="_blank">
+دانلود / مشاهده فایل
+</a>
+
+</p>
+
+{% endif %}
+<br>
+
+<a href="{% url 'note_update' note.pk %}">
+✏️ ویرایش
+</a>
+
+<br>
+
+<a href="{% url 'note_delete' note.pk %}">
+🗑️ حذف
+</a>
+
 </p>
 
 <hr>
@@ -27,7 +69,6 @@
 {% empty %}
 
 <p>هنوز جزوه‌ای ثبت نشده است.</p>
-
 {% endfor %}
 
 <a href="{% url 'course_list' %}">
